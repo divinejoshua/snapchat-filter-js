@@ -9,7 +9,7 @@
 
     // Create a new image element
     var redDotImg = new Image();
-    redDotImg.src = 'reddot.png'; // Replace with the path to your image
+    redDotImg.src = 'images/reddot.png'; // Replace with the path to your image
 
 
     // On set up 
@@ -32,6 +32,7 @@
         background(220);
         image(video,0,0,600,500)
         redDotAnimation() //Red dot animation
+        
     }
 
 
@@ -40,15 +41,20 @@
     function redDotAnimation(){
         //This animation is a red dot on the nose
         if(poses.length > 0) {
+            console.log(poses[0].pose)
             noseX = poses[0].pose.nose.x
             noseY = poses[0].pose.nose.y
             redDotImg.style.position = 'absolute';
-            iredDotImgmg.style.left = noseX-17 + 'px';
+            redDotImg.style.left = noseX-17 + 'px';
             redDotImg.style.top = noseY + 'px';
             redDotImg.style.width = 50 + 'px';
             redDotImg.style.height = 50 + 'px';
+
+            // Add the red dot to the dom 
+            document.body.appendChild(redDotImg);
+             
         }
 
-        document.body.appendChild(img);
+      
 
     }
