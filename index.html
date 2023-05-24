@@ -14,19 +14,40 @@
     <script>
       // Your code will go here
       // open up your console - if everything loaded properly you should see the latest ml5 version
+      console.clear()
       console.log('ml5 version:', ml5.version);
-      let video
-      function setup() {
-        createCanvas(600,500);
-        video = createCapture(VIDEO)
-        video.size(600, 500)
-        video.hide()
-      }
 
-      function draw() {
-        background(200);
-        image(video,0,0,600,500)
-      }
+
+        let video
+        let poses = []
+
+        function setup() {
+            createCanvas(600,500);
+            video = createCapture(VIDEO)
+            video.size(600, 500)
+            video.hide()
+        }
+        
+        let poseFinder = ml5.poseNet(video);
+
+        // When the model is loaded
+        function modelLoaded() {
+            console.log('Model Loaded!');
+        }
+
+        // Listen to new 'pose' events
+        poseFinder.on('pose', (results) => {
+            poses = results;
+        });
+
+        function draw() {
+            background(200);
+            image(video,0,0,600,500)
+            //console.log(poses)
+        
+        }
+
+
     </script>
   </body>
 </html>
