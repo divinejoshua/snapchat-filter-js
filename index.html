@@ -15,13 +15,17 @@
       // Your code will go here
       // open up your console - if everything loaded properly you should see the latest ml5 version
       console.log('ml5 version:', ml5.version);
-
+      let video
       function setup() {
-        createCanvas(400, 400);
+        createCanvas(600,500);
+        video = createCapture(VIDEO)
+        video.size(600, 500)
+        video.hide()
       }
 
       function draw() {
         background(200);
+        image(video,0,0,600,500)
       }
     </script>
   </body>
