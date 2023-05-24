@@ -20,31 +20,40 @@
 
         let video
         let poses = []
+        let noseX
+        let noseY
 
         function setup() {
             createCanvas(600,500);
             video = createCapture(VIDEO)
             video.size(600, 500)
+
+            let poseFinder = ml5.poseNet(video); 
+            // Listen to new 'pose' events
+            poseFinder.on('pose', getPose);
+                        
             video.hide()
         }
-        
-        let poseFinder = ml5.poseNet(video);
-
-        // When the model is loaded
-        function modelLoaded() {
-            console.log('Model Loaded!');
-        }
-
-        // Listen to new 'pose' events
-        poseFinder.on('pose', (results) => {
-            poses = results;
-        });
 
         function draw() {
-            background(200);
+            background(220);
             image(video,0,0,600,500)
-            //console.log(poses)
-        
+
+            if(poses.length > 0) {
+                noseX = poses[0].pose.nose.x
+                noseY = poses[0].pose.nose.y
+                fill(255,0,0)
+                ellipse(noseX,noseY, 20)  
+                console.log(poses)
+            }
+
+
+            
+        }
+
+         // When the model is loaded
+         function getPose(results) {
+            poses = results
         }
 
 
