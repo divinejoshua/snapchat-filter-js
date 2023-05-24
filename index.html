@@ -38,22 +38,24 @@
         function draw() {
             background(220);
             image(video,0,0,600,500)
-
-            if(poses.length > 0) {
-                noseX = poses[0].pose.nose.x
-                noseY = poses[0].pose.nose.y
-                fill(255,0,0)
-                ellipse(noseX,noseY, 20)  
-                console.log(poses)
-            }
-
-
-            
+            redDotAnimation() //Red dot animation
         }
 
          // When the model is loaded
          function getPose(results) {
             poses = results
+        }
+
+        //Animations 
+        function redDotAnimation(){
+            //This animation is a red dot on the nose
+            if(poses.length > 0) {
+                noseX = poses[0].pose.nose.x
+                noseY = poses[0].pose.nose.y
+                fill(255,0,0)
+                ellipse(noseX,noseY, 70)  
+            }
+
         }
 
 
