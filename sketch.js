@@ -7,6 +7,11 @@
     let noseX = null
     let noseY = null
 
+    // Create a new image element
+    var redDotImg = new Image();
+    redDotImg.src = 'reddot.png'; // Replace with the path to your image
+
+
     // On set up 
     function setup() {
         createCanvas(600,500);
@@ -37,9 +42,13 @@
         if(poses.length > 0) {
             noseX = poses[0].pose.nose.x
             noseY = poses[0].pose.nose.y
-            
-            fill(255,0,0)
-            ellipse(noseX,noseY, 50)  
+            redDotImg.style.position = 'absolute';
+            iredDotImgmg.style.left = noseX-17 + 'px';
+            redDotImg.style.top = noseY + 'px';
+            redDotImg.style.width = 50 + 'px';
+            redDotImg.style.height = 50 + 'px';
         }
+
+        document.body.appendChild(img);
 
     }
