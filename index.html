@@ -8,56 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
     <!-- ml5 -->
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <!-- Sketch  -->
+    <script src="sketch.js"></script>
   </head>
 
   <body>
     <script>
-      // Your code will go here
-      // open up your console - if everything loaded properly you should see the latest ml5 version
-      console.clear()
-      console.log('ml5 version:', ml5.version);
-
-
-        let video
-        let poses = []
-        let noseX
-        let noseY
-
-        function setup() {
-            createCanvas(600,500);
-            video = createCapture(VIDEO)
-            video.size(600, 500)
-
-            let poseFinder = ml5.poseNet(video); 
-            // Listen to new 'pose' events
-            poseFinder.on('pose', getPose);
-                        
-            video.hide()
-        }
-
-        function draw() {
-            background(220);
-            image(video,0,0,600,500)
-            redDotAnimation() //Red dot animation
-        }
-
-         // When the model is loaded
-         function getPose(results) {
-            poses = results
-        }
-
-        //Animations 
-        function redDotAnimation(){
-            //This animation is a red dot on the nose
-            if(poses.length > 0) {
-                noseX = poses[0].pose.nose.x
-                noseY = poses[0].pose.nose.y
-                fill(255,0,0)
-                ellipse(noseX,noseY, 70)  
-            }
-
-        }
-
+    
 
     </script>
   </body>
