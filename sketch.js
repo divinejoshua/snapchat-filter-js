@@ -7,15 +7,7 @@
     let noseX = null
     let noseY = null
 
-    // Create a new image element
-    var redDotImg = new Image();
-    redDotImg.src = 'images/reddot.png';
-
-     // Create a new image element
-    var clownHatImg = new Image();
-    clownHatImg.src = 'images/clown-hat.png';
-
-
+  
     // On set up 
     function setup() {
         createCanvas(600,500);
@@ -29,11 +21,17 @@
           });
                     
         video.hide()
+
+        // Load the images
+        redDotImg = loadImage('images/reddot.png');
+        clownHatImg = loadImage('images/clown-hat.png');
     }
 
     // On camera 
     function draw() {
         background(220);
+        translate(width,  0);
+        scale(-1, 1);
         image(video,0,0,600,500)
         redDotAnimation() //Red dot animation
         clownHatAnimation() //Red dot animation
@@ -49,14 +47,8 @@
         if(poses.length > 0) {
             noseX = poses[0].pose.nose.x
             noseY = poses[0].pose.nose.y
-            redDotImg.style.position = 'absolute';
-            redDotImg.style.left = noseX-17 + 'px';
-            redDotImg.style.top = noseY + 50 + 'px';
-            redDotImg.style.width = 50 + 'px';
-            redDotImg.style.height = 50 + 'px';
-
-            // Add the red dot to the dom 
-            document.body.appendChild(redDotImg);
+            image(redDotImg, noseX, noseY, 50, 50);
+         
              
         }
 
@@ -67,15 +59,9 @@
         if(poses.length > 0) {
             noseX = poses[0].pose.nose.x
             noseY = poses[0].pose.nose.y
-            clownHatImg.style.position = 'absolute';
-            clownHatImg.style.left = noseX-200 + 'px';
-            clownHatImg.style.top = noseY - 350 + 'px';
-            clownHatImg.style.width = 400 + 'px';
-            clownHatImg.style.height = 400 + 'px';
+            image(clownHatImg, noseX-200, noseY-450, 400, 400);
+           
 
-            // Add the red dot to the dom 
-            document.body.appendChild(clownHatImg);
-             
         }
 
     }
