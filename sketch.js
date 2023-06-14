@@ -59,7 +59,7 @@
         if(poses.length > 0) {
             noseX = poses[0].pose.nose.x
             noseY = poses[0].pose.nose.y
-            image(clownHatImg, noseX-200, noseY-450, 400, 400 );
+            image(clownHatImg, noseX-200, noseY-450, 400, 400);
            
 
         }
